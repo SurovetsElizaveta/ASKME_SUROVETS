@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>signup</title>
+    <link rel="stylesheet" href="./../static/css/base.css">
+    <link rel="stylesheet" href="./../static/css/signup.css">
+</head>
+<body>
+<header class="header">
+  <div class="logo">
+    <a href="#">AskPupkin</a>
+    </div>
+  <div class="navbar">
+    <form action="#">
+      <input class="search" type="text" placeholder="Search">
+    </form>
+  </div>
+  <div class="profile">
+    <a href="./login.html">log in</a>
+    <a href="./signup.html">register</a>
+  </div>
+</header>
+<main class="content">
+  <div class="left-part">
+    <h2>Registration</h2>
+    <div class="login-form" style="display: flex; gap: 30px;">
+      <label style="width: 120px;">Login</label>
+      <input type="text" style="width: 40%;">
+    </div>
+    <div class="email-form" style="display: flex; gap: 30px;">
+      <label style="width: 120px;">Email</label>
+      <input type="email" placeholder="name@example.com" style="width: 40%;" required>
+    </div>
+    <div class="nickname-form" style="display: flex; gap: 30px;">
+      <label style="width: 120px;">NickName</label>
+      <input type="text" style="width: 40%;">
+    </div>
+    <div class="password-form" style="display: flex; gap: 30px;">
+      <label style="width: 120px;">Password</label>
+      <input type="password" placeholder="********" style="width: 40%;">
+    </div>
+    <div class="password-form" style="display: flex; gap: 30px;">
+      <label style="width: 120px;">Repeat password</label>
+      <input type="password" placeholder="********" style="width: 40%;">
+    </div>
+    <div class="profile-avatar" style="display: flex; gap: 30px;">
+      <label style="width: 120px;">Upload avatar</label>
+      <input type="file" style="width: 40%;">
+      <button>choose</button>
+    </div>
+    <button style="width: 80px; margin-left: 150px; margin-top: 20px; background-color: lightblue;">Register!</button>
+  </div>
+  <aside class="sidebar">
+    <section class="popular-tags">
+      <h1>Popular Tags</h1>
+      <div class="tags">
+        <a href="#">tag</a>
+        <a href="#">tag</a>
+        <a href="#">tag</a>
+        <a href="#">tag</a>
+        <a href="#">tag</a>
+        <a href="#">tag</a>
+      </div>
+    </section>
+    <section class="best-members">
+      <h1>Best Members</h1>
+      <ul class="best-members-list">
+        <li><a href="#">Member</a></li>
+        <li><a href="#">Member</a></li>
+        <li><a href="#">Member</a></li>
+        <li><a href="#">Member</a></li>
+        <li><a href="#">Member</a></li>
+      </ul>
+    </section>
+  </aside>
+</main>
+<footer class="footer"></footer>
+</body>
+</html>

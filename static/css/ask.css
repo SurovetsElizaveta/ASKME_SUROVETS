@@ -1,0 +1,15 @@
+.new-ques-title {
+    display: flex;
+    gap: 30px;
+}
+
+.new-ques-text {
+    display: flex;
+    gap: 30px;
+}
+
+.new-ques-tags {
+    display: flex;
+    gap: 30px;
+}
+

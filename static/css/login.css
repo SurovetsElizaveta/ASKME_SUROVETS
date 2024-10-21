@@ -1,0 +1,9 @@
+.login-form {
+    display: flex;
+    gap: 30px;
+}
+
+.password-form {
+    display: flex;
+    gap: 30px;
+}

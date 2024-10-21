@@ -36,15 +36,18 @@
     <h2>New Question</h2>
     <div class="new-ques-title">
       <label style="width: 40px;">Title</label>
-      <input type="text" style="width: 100%;">
+      <textarea style="width: 100%;" maxlength="300"></textarea>
     </div>
     <div class="new-ques-text">
       <label style="width: 40px;">Text</label>
-      <textarea  rows="20" style="width: 100%;"></textarea>
+      <textarea  rows="20" style="width: 100%;" maxlength="1500"></textarea>
     </div>
     <div class="new-ques-tags">
       <label style="width: 40px;">Tags</label>
-      <input type="text" style="width: 100%;">
+      <div style="display: flex; flex-direction: column; width: 100%;">
+        <input type="text" style="width: 100%;" maxlength="200">
+        <div style="color: red;">Sorry, you can use only 3 tags.</div>
+      </div>
     </div>
     <button style="width: 60px; margin-left: 65px;">ASK!</button>
   </div>

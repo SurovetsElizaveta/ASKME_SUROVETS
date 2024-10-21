@@ -1,6 +1,7 @@
 .new-ques-title {
     display: flex;
     gap: 30px;
+    align-items: center;
 }
 
 .new-ques-text {

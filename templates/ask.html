@@ -1,79 +1,41 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ask</title>
-    <link rel="stylesheet" href="./../static/css/base.css">
     <link rel="stylesheet" href="./../static/css/ask.css">
+    <link rel="stylesheet" href="./../static/css/base.css">
 </head>
-<body>
-<header class="header">
-  <div class="logo">
-    <a href="#">AskPupkin</a>
-    </div>
-  <div class="navbar">
-    <form action="#">
-      <input class="search" type="text" placeholder="Search">
-      <button class="srch-btn">Ask!</button>
-    </form>
-  </div>
-  <div class="profile">
-    <div class="profile-photo">
-      <img src="./image.jpg" alt="photo">
-    </div>
-    <div class="profile-info">
-      <div class="user-name">Dr.Pepper</div>
-      <div class="profile-links">
-        <a href="./setting.html">settings</a>
-        <a href="./logout.html">log out</a>
-      </div>
-    </div>
-  </div>
-</header>
-<main class="content">
-  <div class="left-part">
-    <h2>New Question</h2>
+
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block ask-button %}
+{% include 'layouts/ask_button.html' %}
+{% endblock %}
+
+{% block profile %}
+{% include 'layouts/profile_loged_in.html' %}
+{% endblock %}
+
+{% block content %}
+<h2>New Question</h2>
     <div class="new-ques-title">
-      <label style="width: 40px;">Title</label>
-      <textarea style="width: 100%;" maxlength="300"></textarea>
+      <label style="width: 40px;" for="new_ques_title">Title</label>
+      <input id="new_ques_title" style="width: 1000px;" maxlength="300"></input>
     </div>
     <div class="new-ques-text">
       <label style="width: 40px;">Text</label>
-      <textarea  rows="20" style="width: 100%;" maxlength="1500"></textarea>
+      <textarea  rows="20" style="width: 1000px;" maxlength="1500"></textarea>
     </div>
     <div class="new-ques-tags">
       <label style="width: 40px;">Tags</label>
       <div style="display: flex; flex-direction: column; width: 100%;">
-        <input type="text" style="width: 100%;" maxlength="200">
+        <input type="text" style="width: 1000px;" maxlength="200">
         <div style="color: red;">Sorry, you can use only 3 tags.</div>
       </div>
     </div>
     <button style="width: 60px; margin-left: 65px;">ASK!</button>
-  </div>
-  <aside class="sidebar">
-    <section class="popular-tags">
-      <h1>Popular Tags</h1>
-      <div class="tags">
-        <a href="#">tag</a>
-        <a href="#">tag</a>
-        <a href="#">tag</a>
-        <a href="#">tag</a>
-        <a href="#">tag</a>
-        <a href="#">tag</a>
-      </div>
-    </section>
-    <section class="best-members">
-      <h1>Best Members</h1>
-      <ul class="best-members-list">
-        <li><a href="#">Member</a></li>
-        <li><a href="#">Member</a></li>
-        <li><a href="#">Member</a></li>
-        <li><a href="#">Member</a></li>
-        <li><a href="#">Member</a></li>
-      </ul>
-    </section>
-  </aside>
-</main>
-<footer class="footer"></footer>
-</body>
+{% endblock %}
+</html>

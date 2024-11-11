@@ -1,0 +1,20 @@
+{% load static %}
+
+<article class="answer">
+    <div class="ans-left">
+        <div class="avatar">
+            <img src="{% static 'img/giraf.jpg' %}" alt="My image" style="height: 100%; width: 100%">
+        </div>
+        <input class="form-control" type="number" value="5" placeholder="Default input"
+               aria-label="default input example" style="width: 50px">
+    </div>
+    <div class="ans-right">
+        <div class="ans-text" style="margin-bottom: 0px">{{ answer.text }}</div>
+        <div class="form-check" style="margin-top: 20px;">
+            <input class="form-check-input" id="form-check-input" type="checkbox" value="">
+            <label class="form-check-label" for="form-check-input">
+                Correct!
+            </label>
+        </div>
+    </div>
+</article>

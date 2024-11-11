@@ -5,14 +5,13 @@
 }
 
 .card {
-    height: 150px;
+    height: 200px;
     border: 1px solid black;
     display: flex;
     gap: 20px;
 }
 
 .card-left {
-    width: 30%;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -20,8 +19,8 @@
 }
 
 .avatar {
-    width: 100px;
-    height: 100px;
+    width: 80%;
+    height: 80%;
     border: 1px solid black;
 }
 

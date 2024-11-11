@@ -1,0 +1,15 @@
+<div class="pagination" style="margin-bottom: 40px">
+    {% if page_obj.has_previous %}
+        <button><a href="?page={{page_obj.previous_page_number}}"><<</a></button>
+        {% if page_obj.previous_page_number  >= 2 %}
+            <button><a href="?page={{page_obj.previous_page_number}}">{{page_obj.previous_page_number }}</a></button>
+        {% endif %}
+    {% endif %}
+    <button>{{ page_obj.number }}</button>
+    {% if page_obj.has_next %}
+        {% if page_obj.next_page_number  <= page_obj.paginator.count %}
+            <button><a href="?page={{page_obj.next_page_number}}">{{page_obj.next_page_number}}</a></button>
+        {% endif %}
+        <button><a href="?page={{page_obj.next_page_number}}">>></a></button>
+    {% endif %}
+</div>

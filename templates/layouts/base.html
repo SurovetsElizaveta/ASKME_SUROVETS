@@ -1,0 +1,57 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>index</title>
+    <link rel="stylesheet" href="./../static/css/base.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="logo">
+        <a href="/">AskPupkin</a>
+    </div>
+    <div class="navbar">
+        <form action="#">
+            <input class="search" type="text" placeholder="Search">
+        </form>
+    </div>
+    {% block ask-button %}
+    {% endblock %}
+    {% block profile %}
+    {% endblock %}
+</header>
+<main class="content">
+    <div class="left-part" style="width: 80%">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <aside class="sidebar">
+        <section class="popular-tags">
+            <h1>Popular Tags</h1>
+            <div class="tags">
+                <a href="/tag">bender</a>
+                <a href="/tag">tag</a>
+                <a href="/tag">tag</a>
+                <a href="/tag">tag</a>
+                <a href="/tag">tag</a>
+                <a href="/tag">tag</a>
+            </div>
+        </section>
+        <section class="best-members">
+            <h1>Best Members</h1>
+            <ul class="best-members-list">
+                <li><a href="#">Member</a></li>
+                <li><a href="#">Member</a></li>
+                <li><a href="#">Member</a></li>
+                <li><a href="#">Member</a></li>
+                <li><a href="#">Member</a></li>
+            </ul>
+        </section>
+    </aside>
+</main>
+<footer class="footer"></footer>
+</body>
+</html>

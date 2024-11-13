@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>question</title>
@@ -8,121 +8,43 @@
     <link rel="stylesheet" href="./../static/css/question.css">
 </head>
 <body>
-<header class="header">
-  <div class="logo">
-    <a href="#">AskPupkin</a>
-    </div>
-  <div class="navbar">
-    <form action="#">
-      <input class="search" type="text" placeholder="Search">
-      <button class="srch-btn">Ask!</button>
-    </form>
-  </div>
-  <div class="profile">
-    <div class="profile-photo">
-      <img src="./image.jpg" alt="photo">
-    </div>
-    <div class="profile-info">
-      <div class="user-name">Dr.Pepper</div>
-      <div class="profile-links">
-        <a href="./setting.html">settings</a>
-        <a href="./logout.html">log out</a>
-      </div>
-    </div>
-  </div>
-</header>
-<main class="content">
-  <div class="left-part">
-    <div class="question">
-      <div class="ques-left">
+
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block ask-button %}
+{% include 'layouts/ask_button.html' %}
+{% endblock %}
+
+{% block profile %}
+{% include 'layouts/profile_loged_out.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="question">
+    <div class="ques-left">
         <div class="ques-avatar">
-          <img src="#" alt="avatar">
+            <img src="{% static 'img/giraf.jpg' %}" alt="avatar" style="height: 100%; width: 100%">
         </div>
-        <input class="form-control" type="number" value="5" placeholder="Default input"
-                 aria-label="default input example" style="width: 50px">
-      </div>
-      <div class="ques-right">
-        <h2>Title</h2>
-        <div>description...</div>
+        <input class="form-control" type="number" value="{{ question.likes_num }}" placeholder="Default input"
+               aria-label="default input example" style="width: 50px">
+    </div>
+    <div class="ques-right">
+        <h2>{{ one_question.title }}</h2>
+        <div>{{ one_question.text }}</div>
         <div class="ques-tags">Tags:
-          <a href="#">tag</a>
-          <a href="#">tag</a>
+            <a href="{% url 'tag' %}">{{ one_question.tag.name }}</a>
+            <a href="{% url 'tag' %}">{{ one_question.tag.name }}</a>
+            <a href="{% url 'tag' %}">{{ one_question.tag.name }}</a>
         </div>
-      </div>
     </div>
-    <article class="answer">
-      <div class="ans-left">
-        <div class="avatar">
-          <img src="./profile-photo" alt="Avatar">
-        </div>
-        <input class="form-control" type="number" value="5" placeholder="Default input"
-                aria-label="default input example" style="width: 50px">
-      </div>
-      <div class="ans-right">
-        <div class="ans-text" style="margin-bottom: 0px">answer</div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="">
-          <label class="form-check-label">
-            Correct!
-          </label>
-        </div>
-      </div>
-    </article>
-    <article class="answer">
-      <div class="ans-left">
-        <div class="avatar">
-          <img src="./profile-photo" alt="Avatar">
-        </div>
-        <input class="form-control" type="number" value="5" placeholder="Default input"
-                aria-label="default input example" style="width: 50px">
-      </div>
-      <div class="ans-right">
-        <div class="ans-text" style="margin-bottom: 0px">answer</div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="">
-          <label class="form-check-label">
-            Correct!
-          </label>
-        </div>
-      </div>
-    </article>
-    <div class="pagination">
-      <button><<</button>
-      <button>1</button>
-      <button>2</button>
-      <button>...</button>
-      <button>53</button>
-      <button>>></button>
-    </div>
-    <div class="add-ans-form">
-      <textarea class="form-control" rows="10" cols="100%" placeholder="Enter your answer here."></textarea>
-      <button class="add-ans-btn" style="margin-top: 10px">Answer</button>
-    </div>
-  </div>
-  <aside class="sidebar">
-    <section class="popular-tags">
-      <h1>Popular Tags</h1>
-      <div class="tags">
-        <a href="#">tag</a>
-        <a href="#">tag</a>
-        <a href="#">tag</a>
-        <a href="#">tag</a>
-        <a href="#">tag</a>
-        <a href="#">tag</a>
-      </div>
-    </section>
-    <section class="best-members">
-      <h1>Best Members</h1>
-      <ul class="best-members-list">
-        <li><a href="#">Member</a></li>
-        <li><a href="#">Member</a></li>
-        <li><a href="#">Member</a></li>
-        <li><a href="#">Member</a></li>
-        <li><a href="#">Member</a></li>
-      </ul>
-    </section>
-  </aside>
-</main>
-<footer class="footer"></footer>
-</body>
-</html>
+</div>
+{% for answer in answers %}
+{% include 'layouts/one_answer.html' %}
+{% endfor %}
+{% include 'layouts/pagination.html' %}
+<div class="add-ans-form" style="margin-bottom: 40px">
+    <textarea class="form-control" rows="10" cols="100%" placeholder="Enter your answer here."></textarea>
+    <button class="add-ans-btn" style="margin-top: 10px">Answer</button>
+</div>
+{% endblock %}

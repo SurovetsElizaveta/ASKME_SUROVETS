@@ -11,14 +11,14 @@
 
 {% extends 'layouts/base.html' %}
 {% load static %}
+{% load bootstrap5 %}
+
 
 {% block ask-button %}
-{% include 'layouts/ask_button.html' %}
+{% include 'components/ask_button.html' %}
 {% endblock %}
 
-{% block profile %}
-{% include 'layouts/profile_loged_out.html' %}
-{% endblock %}
+
 
 {% block content %}
 <div class="question">
@@ -40,11 +40,14 @@
     </div>
 </div>
 {% for answer in answers %}
-{% include 'layouts/one_answer.html' %}
+{% include 'components/one_answer.html' %}
 {% endfor %}
-{% include 'layouts/pagination.html' %}
-<div class="add-ans-form" style="margin-bottom: 40px">
-    <textarea class="form-control" rows="10" cols="100%" placeholder="Enter your answer here."></textarea>
-    <button class="add-ans-btn" style="margin-top: 10px">Answer</button>
-</div>
+{% include 'components/pagination.html' %}
+<form action="{% url 'question' one_question.id %}" method=POST>
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+    <button class="add-ans-btn" style="margin-top: 10px" type="submit">Answer</button>
+    {% endbuttons %}
+</form>
 {% endblock %}

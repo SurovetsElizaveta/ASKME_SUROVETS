@@ -13,6 +13,7 @@ class Profile(models.Model):
         return self.user.username
 
 
+
 class Tag(models.Model):
     name = models.CharField(max_length=50)
     questions_num = models.IntegerField(default=0)

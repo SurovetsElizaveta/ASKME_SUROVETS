@@ -12,11 +12,7 @@
 {% load static %}
 
 {% block ask-button %}
-{% include 'layouts/ask_button.html' %}
-{% endblock %}
-
-{% block profile %}
-{% include 'layouts/profile_loged_in.html' %}
+{% include 'components/ask_button.html' %}
 {% endblock %}
 
 {% block content %}
@@ -25,8 +21,8 @@
     <a href="{% url 'hot' %}" style="margin-top:auto; margin-bottom: auto;">Hot questions</a>
 </div>
 {% for question in questions %}
-{% include 'layouts/one_question.html' %}
+{% include 'components/one_question.html' %}
 {% endfor %}
-{% include 'layouts/pagination.html' %}
+{% include 'components/pagination.html' %}
 {% endblock %}
 </html>

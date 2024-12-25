@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ask</title>
-    <link rel="stylesheet" href="./../static/css/ask.css">
+    <title>settings</title>
+    <link rel="stylesheet" href="./../static/css/signup.css">
     <link rel="stylesheet" href="./../static/css/base.css">
 </head>
 
@@ -13,19 +13,17 @@
 {% load bootstrap5 %}
 
 
-{% block ask-button %}
-{% include 'components/ask_button.html' %}
-{% endblock %}
-
-
 {% block content %}
-<h2>New Question</h2>
-<form action="{% url 'ask' %}" method="POST">
+<h2>Settings</h2>
+<form action="{% url 'profile_edit' %}" method="POST">
     {% csrf_token %}
     {% bootstrap_form form %}
     {% buttons %}
-    <button style="width: 60px; margin-left: 65px;" type="submit">ASK!</button>
+    <button style="width: 80px; margin-left: 150px; margin-top: 20px; background-color: lightblue;" type="submit">
+        Upload!
+    </button>
     {% endbuttons %}
 </form>
+
 {% endblock %}
 </html>

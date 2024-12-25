@@ -14,10 +14,10 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         num_users = options['ratio']
 
-        tags = [Tag(name=get_random_string(length=15)) for i in range(num_users)]
+        tags = [Tag(name="Tag {}".format(i)) for i in range(num_users)]
         Tag.objects.bulk_create(tags)
 
-        users = [User(username=get_random_string(length=25)) for i in range(num_users)]
+        users = [User(username="Username {}".format(i)) for i in range(num_users)]
         User.objects.bulk_create(users)
 
         profiles = [Profile(user=users[i]) for i in range(num_users)]
@@ -25,12 +25,12 @@ class Command(BaseCommand):
 
 
         questions = [Question(author=profiles[random.randint(0, num_users - 1)],
-                              title=get_random_string(length=80), text=(' '.join([get_random_string(length=90) for k in range(7)]))) for i in
+                              title="Title of the question {} bla bla bla".format(i), text=("text of the question bla bla bla bla bla" * 7)) for i in
                      range(num_users * 10)]
         Question.objects.bulk_create(questions)
 
 
-        answers = [Answer(author=profiles[random.randint(0, num_users - 1)], text=(' '.join([get_random_string(length=90) for k in range(5)])),
+        answers = [Answer(author=profiles[random.randint(0, num_users - 1)], text=("text of the answer to the question bla bla bla" * 5),
                           question=questions[random.randint(0, num_users * 10 - 1)]) for i in range(num_users * 100)]
 
         Answer.objects.bulk_create(answers)

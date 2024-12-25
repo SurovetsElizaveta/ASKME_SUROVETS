@@ -10,40 +10,46 @@
 
 {% extends 'layouts/base.html' %}
 {% load static %}
+{% load bootstrap5 %}
 
-{% block profile %}
-{% include 'layouts/profile_loged_out.html' %}
-{% endblock %}
 
 {% block content %}
 <h2>Registration</h2>
 <div style="color: red;">Sorry, this email address already registered!</div>
-<div class="login-form" style="display: flex; gap: 30px;">
-    <label style="width: 120px;">Login</label>
-    <input type="text" style="width: 40%;" maxlength="50">
-</div>
-<div class="email-form" style="display: flex; gap: 30px;">
-    <label style="width: 120px;">Email</label>
-    <input type="email" placeholder="name@example.com" style="width: 40%;" maxlength="50">
-</div>
-<div class="nickname-form" style="display: flex; gap: 30px;">
-    <label style="width: 120px;">NickName</label>
-    <input type="text" style="width: 40%;" maxlength="50">
-</div>
-<div class="password-form" style="display: flex; gap: 30px;">
-    <label style="width: 120px;">Password</label>
-    <input type="password" placeholder="********" style="width: 40%;" maxlength="50">
-</div>
-<div class="password-form" style="display: flex; gap: 30px;">
-    <label style="width: 120px;">Repeat password</label>
-    <input type="password" placeholder="********" style="width: 40%;" maxlength="50">
-</div>
-<div class="profile-avatar" style="display: flex; gap: 30px;">
-    <label style="width: 120px;">Upload avatar</label>
-    <input type="file" style="width: 40%;">
-    <button>choose</button>
-</div>
-<button style="width: 80px; margin-left: 150px; margin-top: 20px; background-color: lightblue;">Register!</button>
+<form action="{% url 'signup' %}" method="POST">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+    <button style="width: 80px; margin-left: 150px; margin-top: 20px; background-color: lightblue;" type="submit">
+        Register!
+    </button>
+    {% endbuttons %}
+</form>
+<!--<div class="login-form" style="display: flex; gap: 30px;">-->
+<!--    <label style="width: 120px;">Login</label>-->
+<!--    <input type="text" style="width: 40%;" maxlength="50">-->
+<!--</div>-->
+<!--<div class="email-form" style="display: flex; gap: 30px;">-->
+<!--    <label style="width: 120px;">Email</label>-->
+<!--    <input type="email" placeholder="name@example.com" style="width: 40%;" maxlength="50">-->
+<!--</div>-->
+<!--<div class="nickname-form" style="display: flex; gap: 30px;">-->
+<!--    <label style="width: 120px;">NickName</label>-->
+<!--    <input type="text" style="width: 40%;" maxlength="50">-->
+<!--</div>-->
+<!--<div class="password-form" style="display: flex; gap: 30px;">-->
+<!--    <label style="width: 120px;">Password</label>-->
+<!--    <input type="password" placeholder="********" style="width: 40%;" maxlength="50">-->
+<!--</div>-->
+<!--<div class="password-form" style="display: flex; gap: 30px;">-->
+<!--    <label style="width: 120px;">Repeat password</label>-->
+<!--    <input type="password" placeholder="********" style="width: 40%;" maxlength="50">-->
+<!--</div>-->
+<!--<div class="profile-avatar" style="display: flex; gap: 30px;">-->
+<!--    <label style="width: 120px;">Upload avatar</label>-->
+<!--    <input type="file" style="width: 40%;">-->
+<!--    <button>choose</button>-->
+<!--</div>-->
 
 {% endblock %}
 </html>

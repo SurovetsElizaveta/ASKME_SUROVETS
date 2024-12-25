@@ -9,6 +9,7 @@
 </head>
 <body>
 
+
 <header class="header">
     <div class="logo">
         <a href="/">AskPupkin</a>
@@ -20,8 +21,11 @@
     </div>
     {% block ask-button %}
     {% endblock %}
-    {% block profile %}
-    {% endblock %}
+    {% if request.user.is_authenticated %}
+    {% include 'components/profile_loged_in.html' %}
+    {% else %}
+    {% include 'components/profile_loged_out.html' %}
+    {% endif %}
 </header>
 <main class="content">
     <div class="left-part" style="width: 80%">
@@ -32,12 +36,12 @@
         <section class="popular-tags">
             <h1>Popular Tags</h1>
             <div class="tags">
-                <a href="/tag">bender</a>
-                <a href="/tag">tag</a>
-                <a href="/tag">tag</a>
-                <a href="/tag">tag</a>
-                <a href="/tag">tag</a>
-                <a href="/tag">tag</a>
+                <a href="{% url 'tag' %}">bender</a>
+                <a href="{% url 'tag' %}">tag</a>
+                + <a href="{% url 'tag' %}">tag</a>
+                <a href="{% url 'tag' %}">tag</a>
+                <a href="{% url 'tag' %}">tag</a>
+                <a href="{% url 'tag' %}">tag</a>
             </div>
         </section>
         <section class="best-members">

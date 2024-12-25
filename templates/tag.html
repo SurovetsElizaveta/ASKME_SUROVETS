@@ -12,19 +12,16 @@
 {% load static %}
 
 {% block ask-button %}
-    {% include 'layouts/ask_button.html' %}
+    {% include 'components/ask_button.html' %}
 {% endblock %}
 
-{% block profile %}
-    {% include 'layouts/profile_loged_in.html' %}
-{% endblock %}
 
 {% block content %}
 <div class="content-head" style="display: flex; gap: 30px">
     <h1>Tag: bender</h1>
 </div>
 {% for question in tag_questions %}
-  {% include 'layouts/one_question.html' %}
+  {% include 'components/one_question.html' %}
 {% endfor %}
 
 {% endblock %}

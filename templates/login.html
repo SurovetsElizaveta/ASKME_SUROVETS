@@ -9,24 +9,25 @@
 </head>
 
 {% extends 'layouts/base.html' %}
+
 {% load static %}
 
-{% block profile %}
-{% include 'layouts/profile_loged_out.html' %}
-{% endblock %}
+{% load bootstrap5 %}
+
 
 {% block content %}
 <h2>Log In</h2>
 <div style="color: red;">Sorry, wrong password!</div>
-<div class="login-form">
-    <label style="width: 50px;" for="login-form">Login</label>
-    <input id="login-form" type="text" placeholder="Enter your login here." style="width: 40%;" maxlength="50">
+
+<div class="col-5">
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+        <button type="submit" style="width: 60px; margin-left: 80px">Log in!</button>
+        {% endbuttons %}
+    </form>
+    <a href="{% url 'signup' %}" style="margin-left: 80px">create new account</a>
 </div>
-<div class="password-form">
-    <label style="width: 50px;" for="password-form">Password</label>
-    <input id="password-form" type="password" placeholder="********" style="width: 40%;" maxlength="50">
-</div>
-<button style="width: 60px; margin-left: 80px">Log in!</button>
-<a href="./signup.html" style="margin-left: 80px">create new account</a>
 {% endblock %}
 </html>

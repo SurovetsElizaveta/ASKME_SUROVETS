@@ -35,7 +35,8 @@ class UserForm(forms.ModelForm):
         user.set_password(self.cleaned_data['password'])
 
         user.save()
-        # Profile.save(user)
+        profile = Profile(user=user)
+        profile.save()
 
         return user
 
@@ -44,18 +45,21 @@ class EditProfileForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
     nickname = forms.CharField()
     email = forms.CharField()
+    # avatar = forms.ImageField()
 
     class Meta:
         model = User
         fields = ('username', 'email', 'nickname', 'password')
 
-    def save(self, commit=True):
-        user = super().save(commit=False)
-
-        user._do_update()
-        Profile.save(user)
-
-        return user
+    # def save(self, commit=True):
+    #     user = super().save(commit=False)
+    #
+    #     # user.username = self.username
+    #     # user.set_password(self.cleaned_data['password'])
+    #     # user.email = self.email
+    #     # profile = Profile
+    #     # profile.save()
+    #     return user
 
 class AskForm(forms.ModelForm):
     tag = forms.CharField()

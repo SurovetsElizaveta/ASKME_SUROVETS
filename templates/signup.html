@@ -15,7 +15,6 @@
 
 {% block content %}
 <h2>Registration</h2>
-<div style="color: red;">Sorry, this email address already registered!</div>
 <form action="{% url 'signup' %}" method="POST">
     {% csrf_token %}
     {% bootstrap_form form %}

@@ -17,18 +17,20 @@ QUESTIONS = (Question.objects.all())
 NEWEST_QUESTIONS = Question.objects.get_newest()
 HOT_QUESTIONS = Question.objects.get_hottest()
 
+
 def pagination(request, array):
     page_num = int(request.GET.get('page', 1))
     paginator = Paginator(array, 20)
     page = paginator.page(page_num)
     return page
 
+
 def index(request):
     page = pagination(request, NEWEST_QUESTIONS)
     return render(
-            request, 'index.html',
-            context={'questions': page.object_list, 'page_obj': page}
-        )
+        request, 'index.html',
+        context={'questions': page.object_list, 'page_obj': page}
+    )
 
 
 def hot_questions(request):
@@ -50,7 +52,7 @@ def tag(request, tag):
 def question(request, question_id):
     ANSWER = Answer.objects.get_answers(question_id)
     page = pagination(request, ANSWER)
-    one_question = QUESTIONS[question_id]
+    one_question = QUESTIONS[question_id - 1]
     form = AnswerForm
     if request.method == 'POST':
         form = AnswerForm(request.POST)
@@ -62,7 +64,7 @@ def question(request, question_id):
             return redirect(reverse('question', args=[question_id]))
     return render(
         request, 'question.html',
-        context={'answers': page.object_list, 'page_obj': page, 'one_question': one_question, 'form':form}
+        context={'answers': page.object_list, 'page_obj': page, 'one_question': one_question, 'form': form}
     )
 
 
@@ -74,17 +76,18 @@ def login(request):
             user = auth.authenticate(request, **form.cleaned_data)
             if user:
                 auth.login(request, user)
+
                 return redirect(reverse('ask'))
             form.add_error('password', 'Invalid username or password.')
 
-    return render(request, 'login.html', {'form' : form})
+    return render(request, 'login.html', {'form': form})
 
 
+@login_required
 def logout(request):
     print('logout')
     auth.logout(request)
     return redirect(reverse('index'))
-
 
 
 def signup(request):
@@ -99,6 +102,7 @@ def signup(request):
     return render(request, 'signup.html', {"form": form})
 
 
+@login_required
 def ask(request):
     if request.method == 'POST':
         form = AskForm(request.POST)
@@ -106,19 +110,35 @@ def ask(request):
             question = form.save(commit=False)
             question.author = request.user.profile
             question.save()
-            return redirect(reverse('question', args = [len(QUESTIONS) - 1]))
+            QUESTIONS = Question.objects.all()
+            return redirect(reverse('question', args=[len(QUESTIONS) - 1]))
     else:
         form = AskForm
 
     return render(request, 'ask.html', {'form': form})
 
-def profile_edit(request):
-    form = EditProfileForm
-    if request.method == 'POST':
-        form = EditProfileForm(request.POST)
-        if form.is_valid():
-            if request.POST.get("tags").split(' ') <= 3:
-                form.save()
-                return redirect(reverse('profile_edit'))
-    return render(request, 'profile/edit.html', {"form": form})
 
+# @login_required
+# def profile_edit(request):
+#     form = EditProfileForm
+#     if request.method == 'POST':
+#         form = EditProfileForm(request.POST)
+#         if form.is_valid():
+#             if request.POST.get("tags").split(' ') <= 3:
+#                 form.save()
+#                 return redirect(reverse('profile_edit'))
+#     return render(request, 'profile/edit.html', {"form": form})
+
+@login_required
+def profile_edit(request):
+    profile = Profile.objects.get(user=request.user)
+
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile_edit')
+    else:
+        form = EditProfileForm(instance=profile)
+
+    return render(request, 'profile/edit.html', {'form': form})
